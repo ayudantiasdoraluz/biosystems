@@ -12,7 +12,7 @@ for HOV = 1:2
     for c = 1:3
         switch c
             case 1
-                [v,testMSE,trainingMSE,R,rMSE,E,IRGT, efec, nena] = deal(1,zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(780,9),zeros(780,2),cell(1,780));
+                [v,SEP,testMSE,trainingMSE,R,rMSE,E,IRGT, efec, nena] = deal(1,zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(780,9),zeros(780,2),cell(1,780));
                 for l = 10:2:20
                     for j = 2:2:14
                         if j <= l
@@ -37,6 +37,7 @@ for HOV = 1:2
                                 trainingMSE(v,1) = performance;
                                 R(v,1) = r;
                                 rMSE(v,1) = sqrt(testPerformance);
+                                SEP(v,1) = (100 / mean(norm_data)) * rMSE(v,1);
                             
                                 % Calcula las contribuciones relativas de las variables de entrada.
                                 [IRG] = Garson2function(l,net);
@@ -76,10 +77,10 @@ for HOV = 1:2
                 end
                 
                 % Crea el Excel con todos los parámetros.
-                EW2C(nena,testMSE,trainingMSE,rMSE,R,IRGT,F(c,1:3),val,efec);
+                EW2C(nena,testMSE,trainingMSE,rMSE,R,IRGT,F(c,1:3),val,efec,SEP);
                 clc;
             case 2
-                [v,testMSE,trainingMSE,R,rMSE,E,IRGT, efec, nena] = deal(1,zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(780,9),zeros(780,2),cell(1,780));
+                [v,SEP,testMSE,trainingMSE,R,rMSE,E,IRGT, efec, nena] = deal(1,zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(780,9),zeros(780,2),cell(1,780));
                 for l = 10:2:20
                     for j = 2:2:14
                         if j <= l
@@ -104,6 +105,7 @@ for HOV = 1:2
                             trainingMSE(v,1) = performance;
                             R(v,1) = r;
                             rMSE(v,1) = sqrt(testPerformance);
+                            SEP(v,1) = (100 / mean(norm_data)) * rMSE(v,1);
                             
                             % Calcula las contribuciones relativas de las variables de entrada.
                             [IRG] = Garson2function(l,net);
@@ -143,10 +145,10 @@ for HOV = 1:2
                 end
                 
                 % Crea el Excel con todos los parámetros.
-                EW2C(nena,testMSE,trainingMSE,rMSE,R,IRGT,F(c,1:2),val,efec);
+                EW2C(nena,testMSE,trainingMSE,rMSE,R,IRGT,F(c,1:2),val,efec,SEP);
                 clc;
             case 3
-                [v,testMSE,trainingMSE,R,rMSE,E,IRGT, efec, nena] = deal(1,zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(780,9),zeros(780,2),cell(1,780));
+                [v,SEP,testMSE,trainingMSE,R,rMSE,E,IRGT, efec, nena] = deal(1,zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(1,780),zeros(780,9),zeros(780,2),cell(1,780));
                 for l = 10:2:20
                     for j = 2:2:14
                         if j <= l
@@ -171,6 +173,7 @@ for HOV = 1:2
                             trainingMSE(v,1) = performance;
                             R(v,1) = r;
                             rMSE(v,1) = sqrt(testPerformance);
+                            SEP(v,1) = (100 / mean(norm_data)) * rMSE(v,1);
                             
                             % Calcula las contribuciones relativas de las variables de entrada.
                             [IRG] = Garson2function(l,net);
@@ -210,7 +213,7 @@ for HOV = 1:2
                 end
                 
                 % Crea el Excel con todos los parámetros.
-                EW2C(nena,testMSE,trainingMSE,rMSE,R,IRGT,F(c,1:2),val,efec);
+                EW2C(nena,testMSE,trainingMSE,rMSE,R,IRGT,F(c,1:2),val,efec,SEP);
                 clc;
             otherwise
                 disp('other value')
